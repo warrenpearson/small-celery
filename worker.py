@@ -3,7 +3,7 @@ from celery import Celery
 from celery.utils.log import get_task_logger
 
 # Initialize celery
-celery = Celery('tasks', broker='redis://127.0.0.1:6379//')
+celery = Celery("tasks", broker="redis://127.0.0.1:6379//")
 
 # Create logger - enable to display messages on task logger
 celery_log = get_task_logger(__name__)
@@ -15,9 +15,8 @@ celery_log = get_task_logger(__name__)
 def create_order(task_name, value):
     complete_time_per_task = 5
 
-    celery_log.info(f"Task Starting")
+    celery_log.info("Task Starting")
     sleep(complete_time_per_task * int(value))
-    celery_log.info(f"Task Complete!")
+    celery_log.info("Task Complete!")
 
-    return {"message": f"{task_name} completed!",
-            "value": value}
+    return {"message": f"{task_name} completed!", "value": value}
