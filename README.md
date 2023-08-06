@@ -120,4 +120,10 @@ The name of the file containing your celery tasks is _really_ important, as it i
 
 returns a list of running workers.
 
+### Questions
+
+Where does Flower store state?
+
+Why does redis seem so sparse?
+
 

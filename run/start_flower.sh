@@ -2,4 +2,4 @@
 
 source venv/bin/activate
 
-celery -A my_tasks.celery flower > logs/flower.log 2>&1 &
+FLOWER_UNAUTHENTICATED_API=1 celery -A my_tasks.celery flower > logs/flower.log 2>&1 &
