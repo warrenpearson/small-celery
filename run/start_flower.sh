@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source env/bin/activate
+source venv/bin/activate
 
-celery -A worker.celery flower
+celery -A my_tasks.celery flower > logs/flower.log 2>&1 &

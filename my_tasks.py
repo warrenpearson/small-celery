@@ -10,7 +10,7 @@ celery_log = get_task_logger(__name__)
 
 
 # Create Order - Run Asynchronously with celery
-# Example process of long running task
+# Example process of long-running task
 @celery.task
 def create_order(task_name, value):
     complete_time_per_task = 5

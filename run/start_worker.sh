@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source env/bin/activate
+source venv/bin/activate
 
-celery -A worker.celery worker --loglevel=info
+celery -A my_tasks.celery worker -n $1 --loglevel=info

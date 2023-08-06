@@ -1,30 +1,45 @@
 ## small-celery
 
-### Install dependency
+### Install
 
+#### install and start redis
 ```bash
 brew install redis
 brew services start redis
 ```
 
-### Create environment
+#### create environment
 
 ```bash
 make_env.sh
 ```
 
-### Start flower
+### Startup and shutdown
+
+#### start flower
 
 ```bash
 ./run/start_flower.sh
 ```
 
-### Start a worker
+Logs go in `logs/`. Port is `5555`.
+
+#### stop flower
+
 ```bash
-./run/start_worker.sh
+./run/stop_flower.sh
 ```
 
-### Submit a task
+Just a simple kill against the matching flower process.
+
+#### start a worker
+```bash
+./run/start_worker.sh <num>
+```
+
+`<num>` is required to give each worker a unique name.
+
+#### submit a task
 
 ```bash
 ./run/submit_task.sh
@@ -92,3 +107,17 @@ make_env.sh
      "worker": "celery@Warrens-MacBook-Pro-2.local"}
  }
 ```
+
+### Understanding how celery works
+
+You can start a flower with no running workers, it won't mind.
+
+The name of the file containing your celery tasks is _really_ important, as it is referenced in the startup commands for both flower and the workers. The file is called `my_tasks.py` specifically to make that more obvious.
+
+```
+127.0.0.1:6379> smembers "_kombu.binding.celery.pidbox"
+```
+
+returns a list of running workers.
+
+
